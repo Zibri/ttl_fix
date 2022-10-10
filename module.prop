@@ -1,6 +1,6 @@
-id=cmdpatch
-name=CMD Patch
+id=ttl_fix
+name=TTL Fix
 version=v1.0
 versionCode=1
-author=tytydraco
-description=An Android Linux Kernel command line patch tool using Magisk's magiskboot binary.
+author=Zibri
+description=An Android Linux Kernel patch which does not decrement TTL when routing/tethering.
