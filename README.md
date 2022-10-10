@@ -1,9 +1,4 @@
-# CMD Patch
-An Android Linux Kernel command line patch tool using Magisk's magiskboot binary.
+# TTL Fix
+An Android Linux Kernel patch which does not decrement TTL when routing/tethering.
 
-# Usage
-`cmdpatch <CMDLINE ARGUMENTS>`
-
-Example: `cmdpatch scsi_mod.use_blk_mq=1`
-
-This patches the boot image to use multiqueue by default for SCSI devices. After this finishes, reboot to apply the changes.
+This patches the boot image so that TTL is not decreased when tethering.
