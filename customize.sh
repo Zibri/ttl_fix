@@ -5,6 +5,7 @@ MAGISKBOOT="/data/adb/magisk/magiskboot"
 
 err() {
 	echo -e "\e[94m[!] $@\e[39m"
+        sleep 10
 	exit 1
 }
 
@@ -20,8 +21,14 @@ cd /data/local/tmp/ttl_fix
 
 dd if="$BOOTIMG" of="/data/local/tmp/ttl_fix/boot.img" conv=notrunc
 $MAGISKBOOT unpack -h "/data/local/tmp/ttl_fix/boot.img"
-$MAGISKBOOT hexpatch kernel C9220039C816007968F24039E8002836 1F2003D51F2003D568F24039E8002836
+( $MAGISKBOOT hexpatch kernel C9220039C816007968F24039E8002836 1F2003D51F2003D568F24039E8002836
+|| $MAGISKBOOT hexpatch kernel A0160079A022403900040051A0220039 1F2003D5A0224039000400511F2003D5
+)
+&& (
 $MAGISKBOOT repack "/data/local/tmp/ttl_fix/boot.img" new.img
 dd if=new.img of="$BOOTIMG" conv=notrunc
 mv /data/local/tmp/ttl_fix/boot.img /sdcard/boot.img.backup
 rm -rf /data/local/tmp/ttl_fix
+echo -e "\e[94m[!] $@\e[39mPatch applied."
+sync;sleep 5;reboot
+) || err "Patch not applied."
