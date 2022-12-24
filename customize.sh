@@ -29,6 +29,6 @@ $MAGISKBOOT repack "/data/local/tmp/ttl_fix/boot.img" new.img
 dd if=new.img of="$BOOTIMG" conv=notrunc
 mv /data/local/tmp/ttl_fix/boot.img /sdcard/boot.img.backup
 rm -rf /data/local/tmp/ttl_fix
-echo -e "\e[94m[!] $@\e[39mPatch applied."
+echo -e "\e[94m[!] $@\e[39mPatch removed."
 sync;sleep 5;reboot
-) || err "Patch not applied."
+) || err "Patch not removed."
